@@ -2,9 +2,9 @@
   "name": "metrocanje",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon server",
+    "dev": "nodemon src/server",
     "test": "jest"
   },
   "keywords": [],
