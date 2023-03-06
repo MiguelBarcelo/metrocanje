@@ -11,8 +11,7 @@ const professorSchema = new Schema({
     type: String,
     required: true,
     trim: true
-  },
-  creator
+  }
 }, {
   timestamps: true
 })

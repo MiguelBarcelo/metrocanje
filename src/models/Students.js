@@ -25,8 +25,7 @@ const studentSchema = new Schema({
   savings: {
     type: Number,
     default: 0
-  },
-  creator
+  }
 }, {
   timestamps: true
 });

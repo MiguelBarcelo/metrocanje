@@ -1,25 +1,16 @@
 const { Router } = require('express');
+const professorController = require('../controllers/professorController')
 
 const router = Router();
 
-router.get('/professors', (req, res) => {
-  throw Error('GET /professors not implemented!');
-});
+router.get('/professors', professorController.getProfessors);
 
-router.get('/professors/:id', (req, res) => {
-  throw Error('GET /professors/:id not implemented!');
-});
+router.get('/professors/:id', professorController.getProfessor);
 
-router.post('/professors', (req, res) => {
-  throw Error('POST /professors not implemented!');
-})
+router.post('/professors', professorController.createProfessor);
 
-router.put('/professors/:id', (req, res) => {
-  throw Error('PUT /professors/:id not implemented!');
-})
+router.put('/professors/:id', professorController.updateProfessor);
 
-router.delete('/professors/:id', (req, res) => {
-  throw Error('DELETE /professors/:id not implemented!');
-})
+router.delete('/professors/:id', professorController.deleteProfessor);
 
 module.exports = router;

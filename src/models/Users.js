@@ -28,8 +28,7 @@ const userSchema = new Schema({
       "admin"
     ],
     default: "user"
-  },
-  creator
+  }
 },{
   timestamps: true
 })

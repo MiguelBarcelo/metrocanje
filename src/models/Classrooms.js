@@ -14,8 +14,7 @@ const classroomSchema = new Schema({
   capacity: {
     type: Number,
     required: true
-  },
-  creator
+  }
 }, {
   timestamps: true
 })

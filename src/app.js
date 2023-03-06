@@ -10,12 +10,13 @@ connectDB();
 const app = express();
 
 app.use(cors());
+app.use(express.json())
 
-app.use('/api/', Routes.auth);
-app.use('/api/', Routes.classrooms);
-app.use('/api/', Routes.professors);
-app.use('/api/', Routes.students);
-app.use('/api/', Routes.transactions);
-app.use('/api/', Routes.users);
+app.use('/api/auth', Routes.auth);
+app.use('/api/classrooms', Routes.classrooms);
+app.use('/api/professors', Routes.professors);
+app.use('/api/students', Routes.students);
+app.use('/api/transactions', Routes.transactions);
+app.use('/api/users', Routes.users);
 
 module.exports = app;

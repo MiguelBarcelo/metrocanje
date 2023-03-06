@@ -14,8 +14,7 @@ const transactionSchema = new Schema({
   move: {
     type: ["withdrawal", "saving"],
     required: true
-  },
-  creator
+  }
 }, {
   timestamps: true
 });
