@@ -12,8 +12,8 @@ const transactionSchema = new Schema({
     default: 0
   },
   move: {
-    type: ["withdrawal", "saving"],
-    required: true
+    type: String,
+    enum: ["withdrawal", "saving"]
   }
 }, {
   timestamps: true
