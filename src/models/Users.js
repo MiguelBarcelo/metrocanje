@@ -19,14 +19,12 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: true
+    required: true,
+    select: false
   },
   role: {
-    type: [
-      "user",
-      "professor",
-      "admin"
-    ],
+    type: String,
+    enum: [ "user", "professor", "admin"],
     default: "user"
   }
 },{
