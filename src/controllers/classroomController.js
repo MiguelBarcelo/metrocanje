@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
 const Classrooms = require('../models/Classrooms');
+const handleHttpError = require('../utils/handleError');
 
 const getClassrooms = async (req, res) => {
   try {
@@ -7,7 +7,7 @@ const getClassrooms = async (req, res) => {
     res.json(classrooms);
   } catch (err) {
     console.error('Error getting classrooms:', err);
-    res.status(500).json({ msg: 'Error getting classrooms' });
+    return handleHttpError(res, 500, 'ERROR_GET_CLASSROOMS');
   }
 };
 
@@ -18,7 +18,7 @@ const getClassroom = async (req, res) => {
     res.json(classroom);
   } catch (err) {
     console.error('Error getting classroom:', err);
-    res.status(500).json({ msg: 'Error getting classroom'})
+    return handleHttpError(res, 500, 'ERROR_GET_CLASSROOM');
   }
 };
 
@@ -28,7 +28,7 @@ const createClassroom = async (req, res) => {
     res.json(classroom);
   } catch (err) {
     console.error('Error creating classroom:', err);
-    res.status(500).json({ msg: 'Error creating classroom' });
+    return handleHttpError(res, 500, 'ERROR_CREATE_CLASSROOM');
   }
 };
 
@@ -44,7 +44,7 @@ const updateClassroom = async (req, res) => {
     res.json({ classroom });
   } catch (err) {
     console.error('Error updating classroom:', err);
-    res.status(500).json({ msg: 'Error updating classroom' });
+    return handleHttpError(res, 500, 'ERROR_UPDATE_CLASSROOM');
   }
 };
 
@@ -60,7 +60,7 @@ const deleteClassroom = async (req, res) => {
     res.json({ msg: 'Classroom deleted' })
   } catch (err) {
     console.error('Error deleting classroom:', err);
-    res.status(500).json({ msg: 'Error deleting classroom' });
+    return handleHttpError(res, 500, 'ERROR_DELETE_CLASSROOM');
   }
 };
 

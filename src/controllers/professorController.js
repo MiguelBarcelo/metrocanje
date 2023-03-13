@@ -1,4 +1,5 @@
 const Professors = require('../models/Professors');
+const handleHttpError = require('../utils/handleError');
 
 const getProfessors = async (req, res) => {
   try {
@@ -6,7 +7,7 @@ const getProfessors = async (req, res) => {
     return res.json(professors);
   } catch (err) {
     console.error('Error getting professors:', err);
-    res.status(500).json({ msg: 'Error getting professor' });
+    return handleHttpError(res, 500, 'ERROR_GET_PROFESSORS');
   }
 };
 
@@ -22,7 +23,7 @@ const getProfessor = async (req, res) => {
 
   } catch (err) {
     console.error('Error getting professor:', err);
-    return res.status(500).json({ msg: 'Error getting professor' });
+    return handleHttpError(res, 500, 'ERROR_GET_PROFESSOR');
   }
 };
 
@@ -34,7 +35,7 @@ const createProfessor = async (req, res) => {
     return res.json(professor);
   } catch (err) {
     console.error('Error creating professor:', err);
-    return res.status(500).json({ msg: 'Error creating professor' });
+    return handleHttpError(res, 500, 'ERROR_CREATE_PROFESSOR');
   }
 };
 
@@ -51,7 +52,7 @@ const updateProfessor = async (req, res) => {
     return res.json({ professor });
   } catch (err) {
     console.error('Error updating professor:', err);
-    return res.status(500).json({ msg: 'Error updating professor' });
+    return handleHttpError(res, 500, 'ERROR_UPDATE_PROFESSOR');
   }
 };
 
@@ -63,7 +64,7 @@ const deleteProfessor = async (req, res) => {
     return res.json({ msg: 'Professor deleted' });
   } catch (err) { 
     console.error('Error deleting professor:', err);
-    return res.status(500).json({ msg: 'Error deleting professor' });
+    return handleHttpError(res, 500, 'ERROR_DELETE_PROFESSOR');
   }
 };
 

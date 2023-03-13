@@ -1,4 +1,5 @@
 const Transactions = require('../models/Transactions');
+const handleHttpError = require('../utils/handleError');
 
 const getTransactions = async (req, res) => {
   try {
@@ -6,7 +7,7 @@ const getTransactions = async (req, res) => {
     return res.json(transactions);
   } catch (err) {
     console.error('Error getting transactions:', err);
-    return res.status(500).json({ msg: 'Error getting transactions' });
+    return handleHttpError(res, 500, 'ERROR_GET_TRANSACTIONS');
   }
 };
 
@@ -21,7 +22,7 @@ const getTransaction = async (req, res) => {
     return res.json(transaction);
   } catch (err) {
     console.error('Error getting transaction:', err);
-    return res.status(500).json({ msg: 'Error getting transaction' });
+    return handleHttpError(res, 500, 'ERROR_GET_TRANSACTION');
   }
 };
 
@@ -33,7 +34,7 @@ const createTransaction = async (req, res) => {
     return res.json(transaction);
   } catch (err) {
     console.error('Error creating transaciont:', err);
-    return res.status(500).json({ msg: 'Error creating transaciont' });
+    return handleHttpError(res, 500, 'ERROR_CREATE_TRANSACTION');
   }
 };
 
@@ -51,7 +52,7 @@ const updateTransaction = async (req, res) => {
     return res.json(transaction);
   } catch (err) {
     console.error('Error updating transaction:', err);
-    return res.status(500).json({ msg: 'Error updating transaction' });
+    return handleHttpError(res, 500, 'ERROR_UPDATE_TRANSACTION');
   }
 };
 
@@ -63,7 +64,7 @@ const deleteTransaction = async (req, res) => {
     return res.json({ msg: 'Transaction deleted' });
   } catch (err) {
     console.error('Error deleting transaction:', err);
-    return res.status(500).json({ msg: 'Error deleting transaction' });
+    return handleHttpError(res, 500, 'ERROR_DELETE_TRANSACTION');
   }
 };
 

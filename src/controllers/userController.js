@@ -1,5 +1,6 @@
 const Users = require('../models/Users');
 const { encrypt } = require('../utils/handlePassword');
+const handleHttpError = require('../utils/handleError');
 
 const getUsers = async (req, res) => {
   try {
@@ -7,7 +8,7 @@ const getUsers = async (req, res) => {
     return res.json(users);
   } catch (err) { 
     console.error('Error getting users:', err);
-    return res.status(500).json({ msg: 'Error getting users' });
+    return handleHttpError(res, 500, 'ERROR_GET_USERS');
   }
 };
 
@@ -22,7 +23,7 @@ const getUser = async (req, res) => {
     return res.json(user);
   } catch (err) {
     console.error('Error getting user:', err);
-    return res.status(500).json({ msg: 'Error getting user' });
+    return handleHttpError(res, 500, 'ERROR_GET_USER');
   }
 };
 
@@ -43,7 +44,7 @@ const createUser = async (req, res) => {
     return res.json(user);
   } catch (err) {
     console.error('Error creating user:', err);
-    return res.status(500).json({ msg: 'Error creating user' });
+    return handleHttpError(res, 500, 'ERROR_CREATE_USER');
   }
 };
 
@@ -64,7 +65,7 @@ const updateUser = async (req, res) => {
     return res.json(user);
   } catch (err) {
     console.error('Error updating user:', err);
-    return res.status(500).json({ msg: 'Error updating user' });
+    return handleHttpError(res, 500, 'ERROR_UPDATE_USER');
   }
 };
 
@@ -76,7 +77,7 @@ const deleteUser = async (req, res) => {
     return res.json({ msg: 'User deleted' });
   } catch (err) {
     console.error('Error deleting user:', err);
-    return res.status(500).json({ msg: 'Error deleting user' });
+    return handleHttpError(res, 500, 'ERROR_DELETE_USER');
   }
 };
 
