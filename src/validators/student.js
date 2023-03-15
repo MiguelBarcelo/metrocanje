@@ -14,6 +14,7 @@ const validateStudent = [
     .exists()
     .notEmpty()
     .isNumeric({ min: 0 }),
+  check("parents").exists(),
   validateResults
 ];
 
