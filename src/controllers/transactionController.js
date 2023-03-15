@@ -1,5 +1,6 @@
 const Transactions = require('../models/Transactions');
 const handleHttpError = require('../utils/handleError');
+const { matchedData } = require('express-validator');
 
 const getTransactions = async (req, res) => {
   try {
@@ -27,9 +28,8 @@ const getTransaction = async (req, res) => {
 };
 
 const createTransaction = async (req, res) => {
-  const { body } = req;
-
   try {
+    const body = matchedData(req);
     const transaction = await Transactions.create(body);
     return res.json(transaction);
   } catch (err) {
@@ -39,10 +39,9 @@ const createTransaction = async (req, res) => {
 };
 
 const updateTransaction = async (req, res) => {
-  const { id: _id } = req.params;
-  const { body } = req;
-  
   try {
+    const { id: _id } = req.params;
+    const body = matchedData(req);
     let transaction = await Transactions.findById(_id);
     if (!transaction) {
       return res.status(404).json({ msg: 'Transaction not found' });
