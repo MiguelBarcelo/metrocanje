@@ -1,5 +1,6 @@
 const Students = require('../models/Students');
 const handleHttpError = require('../utils/handleError');
+const { matchedData } = require('express-validator');
 
 const getStudents = async (req, res) => {
   try {
@@ -27,9 +28,8 @@ const getStudent = async (req, res) => {
 };
 
 const createStudent = async (req, res) => {
-  const { body } = req;
-
   try {
+    const body = matchedData(req);
     const student = await Students.create(body);
     return res.json(student);
   } catch (err) {
@@ -39,10 +39,9 @@ const createStudent = async (req, res) => {
 };
 
 const updateStudent = async (req, res) => {
-  const { id: _id } = req.params;
-  const { body } = req;
-
   try {
+    const { id: _id } = req.params;
+    const body = matchedData(req);
     let student = await Students.findById(_id);
     if (!student) {
       return res.status(404).json({ msg: 'Student not found' });
