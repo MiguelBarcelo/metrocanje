@@ -8,8 +8,8 @@ const classroomSchema = new Schema({
     trim: true,
   },
   age: {
-    min: { type: Number },
-    max: { type: Number } 
+    min: { type: Number, required: true },
+    max: { type: Number, required: true } 
   },
   capacity: {
     type: Number,
