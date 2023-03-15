@@ -1,5 +1,6 @@
 const Classrooms = require('../models/Classrooms');
 const handleHttpError = require('../utils/handleError');
+const { matchedData } = require('express-validator');
 
 const getClassrooms = async (req, res) => {
   try {
@@ -24,7 +25,8 @@ const getClassroom = async (req, res) => {
 
 const createClassroom = async (req, res) => {
   try {
-    const classroom = await Classrooms.create(req.body);
+    const body = matchedData(req);
+    const classroom = await Classrooms.create(body);
     res.json(classroom);
   } catch (err) {
     console.error('Error creating classroom:', err);
