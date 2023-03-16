@@ -14,25 +14,27 @@ const getLoggedUser = async (req, res) => {
 const login = async (req, res) => {
   const { username } = req.body;
   try {
-    const user = await Users.findOne({ username })
+    const user = await Users.findOne({ username }).select('password username role');
     if (!user) {
       return handleHttpError(res, 404, "USER_NOT_EXISTS")
     }
 
-    const { password } = req.body;
-    const check = await compare(password, user.password);
+    let { password: plainPassword } = req.body;
+    const check = await compare(plainPassword, user.password);
     if (!check) {
       return handleHttpError(res, 401, "PASSWORD_INVALID")
     }
 
+    user.set("password", undefined, { strict: false });
     const data = {
-      token: tokenSign(user),
+      token: await tokenSign(user),
       user
     }
 
     res.send(data)
 
   } catch (err) {
+    console.log(err);
     return handleHttpError(res, 401, "ERROR_LOGIN_USER")
   }
 }
